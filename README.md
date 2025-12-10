@@ -16,8 +16,6 @@ lead-sniper-test/
 │   ├── raw/             # Сырые данные
 │   ├── interim/         # Промежуточные данные
 │   └── companies.csv    # Финальный результат
-├── tests/               # Тесты
-├── notebooks/           # Jupyter notebooks для анализа
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
