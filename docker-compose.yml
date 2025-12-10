@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: lead-sniper-collector
+    volumes:
+      - ./data:/app/data
+      - ./src:/app/src
+      - ./.env:/app/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python src/main.py
+    restart: unless-stopped
+
+  # Jupyter notebook для анализа (опционально)
+  jupyter:
+    build: .
+    container_name: lead-sniper-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/app/notebooks
+      - ./data:/app/data
+      - ./src:/app/src
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+    profiles:
+      - analysis
